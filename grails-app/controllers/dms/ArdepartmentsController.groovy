@@ -6,6 +6,7 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class ArdepartmentsController {
 
+
     ArdepartmentsService ardepartmentsService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

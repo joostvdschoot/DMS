@@ -8,6 +8,7 @@ class Ardepartments {
     String customerNr
     String department
 
+
     static belongsTo = [cdSubcategory:Subcategory, cdEntity:Entity]
 
     static constraints = {
