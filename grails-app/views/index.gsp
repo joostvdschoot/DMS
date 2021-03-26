@@ -43,24 +43,93 @@
     </li>
 </content>
 <!--
+-->
 <div class="svg" role="presentation">
     <div class="grails-logo-container">
-        <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
+        <asset:image src="ODS.png" class="grails-logo"/>
     </div>
 </div>
--->
+
 <div id="content" role="main">
     <section class="row colset-2-its">
         <h1>Object Data Store</h1>
 
         <p>
-            Below is a list of DMS-DOM controllers, click on each to execute its default action:
+            The Object Data Store (ODS) contains configurations for the BeLux DMS Solution, and actual Objects (Contracts and Fines) and Memo's 
         </p>
         <br><br>
 
         <div id="controllers" role="navigation">
             <br>
-            <h2>Controllers:</h2>
+            <h2>ODS Users:</h2>
+            <ul>
+            <li><g:link controller="User">Users (User)</g:link></li>
+            <li><g:link controller="Role">Roles (Role)</g:link></li>
+            <li><g:link controller="Userrole">Roles per User (Userrole)</g:link></li>
+            </ul>
+
+            <h2>Database:</h2>
+            <ul>
+            <li><a href="/h2-console" target="_blank" rel="noopener noreferrer">Database</a></li>
+            </ul>
+
+
+            <h2>Organization data:</h2>
+            <ul>
+            <li><g:link controller="Country">Countries (Country)</g:link></li>
+            <li><g:link controller="Entity">Entities (Entity)</g:link></li>
+            </ul>
+
+            <h2>Active Directory:</h2>
+            <ul>
+            <li><g:link controller="Adgroup">AD Groups (Adgroup)</g:link></li>
+            </ul>
+    
+            <h2>ODM Configuration:</h2>
+            <ul>
+            <li><g:link controller="Workspace">ODM Workspaces (Workspace)</g:link></li>
+            <li><g:link controller="Folder">ODM Folders (Folder)</g:link></li>
+            <li><g:link controller="Wsfolder">Folders per Workspace (Wsfolder)</g:link></li>
+            <li><g:link controller="Doctype">ODM Document types (Doctype)</g:link></li>
+            <li><g:link controller="Doccodeodm">Mapping Document Codes <=> ODM (Doccodeodm)</g:link></li>
+            </ul>
+
+            <h2>Document & Groups Configuration:</h2>
+            <ul>
+            <li><g:link controller="Doccode">Document Codes (Doccode)</g:link></li>
+            <li><g:link controller="Docgroup">Document Groups (Docgroup)</g:link></li>
+            <li><g:link controller="Docgroupstruct">Document Codes per Document Group (Docgroupstruct)</g:link></li>
+            </ul>
+
+            <h2>Save2Portal (s2p) Configuration:</h2>
+            <ul>
+            <li><g:link controller="Department">Departments (Department)</g:link></li>
+            <li><g:link controller="S2ptabs">Tabs (S2ptabs)</g:link></li>
+            <li><g:link controller="S2pstruct">Tabs <-> Document Groups (S2pstruct)</g:link></li>
+            </ul>
+
+            <h2>Search Page (sp) Configuration:</h2>
+            <ul>
+            <li><g:link controller="Sptabs">Tabs (Sptabs)</g:link></li>
+            <li><g:link controller="Spsubtabs">Subtabs (Spsubtabs)</g:link></li>
+            <li><g:link controller="Spsubtabsws">Subtabs-Workspace (Spsubtabsws)</g:link></li>
+            <li><g:link controller="Spadws">AD-Workspace (Spadws)</g:link></li>
+            <li><g:link controller="Spadwsgroup">AD-Workspace Group (Spadwsgroup)</g:link></li>
+            </ul>
+
+            <h2>Asset Related (Ar) Invoices Configuration:</h2>
+            <ul>
+            <li><g:link controller="Ardepartments">Departments (Ardepartments)</g:link></li>
+            <li><g:link controller="Subcategory">Subcategories (Subcategory)</g:link></li>
+            </ul>
+
+            <h2>Objects & Memos</h2>
+            <ul>
+            <li><g:link controller="Object">Objects (Object)</g:link></li>
+            <li><g:link controller="Memo">Memos (Memo)</g:link></li>
+            </ul>
+
+            <h2>All Controllers:</h2>
             <br>
             <ul>
                 <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">

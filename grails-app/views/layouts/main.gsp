@@ -18,10 +18,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-static-top" role="navigation">
     <!--
     <a class="navbar-brand" href="/#"><asset:image src="grails.svg" alt="Grails Logo"/></a>
-    -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    -->
 </nav>
 
 <g:layoutBody/>
@@ -54,7 +54,8 @@
     </div>
     
     -->
-        <div class="col">
+
+    <div class="col">
         <p>DMS Belgium/Luxembourg</p>
     </div>
 
