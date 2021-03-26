@@ -65,7 +65,7 @@
             <ul>
             <li><g:link controller="User">Users (User)</g:link></li>
             <li><g:link controller="Role">Roles (Role)</g:link></li>
-            <li><g:link controller="Userrole">Roles per User (Userrole)</g:link></li>
+            <li><g:link controller="UserRole">Roles per User (UserRole)</g:link></li>
             </ul>
 
             <h2>Database:</h2>
