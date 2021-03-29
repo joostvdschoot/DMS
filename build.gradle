@@ -68,6 +68,7 @@ dependencies {
     compile "org.hibernate:hibernate-core:5.4.18.Final"
     compile "org.grails.plugins:gsp"
     compile "org.grails.plugins:spring-security-core:4.0.0.RC2"
+    compile 'org.grails.plugins:spring-security-ui:4.0.0.M1'
     //grails REST API Security plugin
     compile "org.grails.plugins:spring-security-rest:${springSecurityRestVersion}"
     compile "org.grails.plugins:spring-security-rest-gorm:${springSecurityRestVersion}"
