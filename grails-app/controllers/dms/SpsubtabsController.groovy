@@ -10,23 +10,23 @@ class SpsubtabsController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond spsubtabsService.list(params), model:[spsubtabsCount: spsubtabsService.count()]
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def show(Long id) {
         respond spsubtabsService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def create() {
         respond new Spsubtabs(params)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def save(Spsubtabs spsubtabs) {
         if (spsubtabs == null) {
             notFound()
@@ -49,12 +49,12 @@ class SpsubtabsController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def edit(Long id) {
         respond spsubtabsService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def update(Spsubtabs spsubtabs) {
         if (spsubtabs == null) {
             notFound()
@@ -77,7 +77,7 @@ class SpsubtabsController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def delete(Long id) {
         if (id == null) {
             notFound()

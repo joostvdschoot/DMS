@@ -10,23 +10,23 @@ class EntityController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond entityService.list(params), model:[entityCount: entityService.count()]
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def show(Long id) {
         respond entityService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def create() {
         respond new Entity(params)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def save(Entity entity) {
         if (entity == null) {
             notFound()
@@ -49,12 +49,12 @@ class EntityController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def edit(Long id) {
         respond entityService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def update(Entity entity) {
         if (entity == null) {
             notFound()
@@ -77,7 +77,7 @@ class EntityController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def delete(Long id) {
         if (id == null) {
             notFound()

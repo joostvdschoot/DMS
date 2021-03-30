@@ -10,23 +10,23 @@ class WsfolderController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond wsfolderService.list(params), model:[wsfolderCount: wsfolderService.count()]
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def show(Long id) {
         respond wsfolderService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def create() {
         respond new Wsfolder(params)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def save(Wsfolder wsfolder) {
         if (wsfolder == null) {
             notFound()
@@ -49,12 +49,12 @@ class WsfolderController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def edit(Long id) {
         respond wsfolderService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def update(Wsfolder wsfolder) {
         if (wsfolder == null) {
             notFound()
@@ -77,7 +77,7 @@ class WsfolderController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def delete(Long id) {
         if (id == null) {
             notFound()

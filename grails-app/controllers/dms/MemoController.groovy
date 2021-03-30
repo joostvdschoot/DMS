@@ -10,23 +10,23 @@ class MemoController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond memoService.list(params), model:[memoCount: memoService.count()]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def show(Long id) {
         respond memoService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def create() {
         respond new Memo(params)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def save(Memo memo) {
         if (memo == null) {
             notFound()
@@ -49,12 +49,12 @@ class MemoController {
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def edit(Long id) {
         respond memoService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def update(Memo memo) {
         if (memo == null) {
             notFound()
@@ -77,7 +77,7 @@ class MemoController {
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def delete(Long id) {
         if (id == null) {
             notFound()

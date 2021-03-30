@@ -10,23 +10,23 @@ class ObjectController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond objectService.list(params), model:[objectCount: objectService.count()]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def show(Long id) {
         respond objectService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def create() {
         respond new Object(params)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def save(Object object) {
         if (object == null) {
             notFound()
@@ -49,12 +49,12 @@ class ObjectController {
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def edit(Long id) {
         respond objectService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def update(Object object) {
         if (object == null) {
             notFound()
@@ -77,7 +77,7 @@ class ObjectController {
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG', 'ROLE_USER'])
     def delete(Long id) {
         if (id == null) {
             notFound()

@@ -41,6 +41,21 @@
             </g:each>
         </ul>
     </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+        <sec:ifLoggedIn>
+            <li class="dropdown-item">Logged in as <sec:username/></li>
+            <li class="dropdown-item"><g:link controller='Logout' action=''>Logout</g:link></li>
+        </sec:ifLoggedIn>
+        <sec:ifNotLoggedIn>
+            <li class="dropdown-item"><g:link controller='Country' action=''>Login</g:link></li>
+        </sec:ifNotLoggedIn>
+        </ul>
+    </li>
+
+
+
 </content>
 <!--
 -->
@@ -60,20 +75,41 @@
         <br><br>
 
         <div id="controllers" role="navigation">
+        <!--
+        <sec:ifNotLoggedIn>
+        <form method="POST" action="${resource(file: 'j_spring_security_check')}">
+        <table>
+            <tr>
+            <td>Username:</td><td><g:textField name="j_username"/></td>
+            </tr>
+            <tr>
+            <td>Password:</td><td><input name="j_password" type="password"/></td>
+            </tr>
+            <tr>
+            <td colspan="2"><g:submitButton name="login" value="Login"/></td>
+            </tr>
+            <tr>
+            <td colspan="2">try "glen" or "peter" with "password"</td>
+            </tr>
+        </table>				
+        </form>
+        </sec:ifNotLoggedIn>
+        -->
+        <sec:ifAllGranted roles="ROLE_ADMIN">
             <br>
             <h2>ODS Users:</h2>
             <ul>
             <li><g:link controller="User">Users (User)</g:link></li>
             <li><g:link controller="Role">Roles (Role)</g:link></li>
-            <li><g:link controller="UserRole">Roles per User (UserRole)</g:link></li>
             </ul>
 
             <h2>Database:</h2>
             <ul>
             <li><a href="/h2-console" target="_blank" rel="noopener noreferrer">Database</a></li>
             </ul>
+        </sec:ifAllGranted>
 
-
+        <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_CONFIG">
             <h2>Organization data:</h2>
             <ul>
             <li><g:link controller="Country">Countries (Country)</g:link></li>
@@ -122,13 +158,17 @@
             <li><g:link controller="Ardepartments">Departments (Ardepartments)</g:link></li>
             <li><g:link controller="Subcategory">Subcategories (Subcategory)</g:link></li>
             </ul>
+        </sec:ifAnyGranted>
 
+        <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_CONFIG,ROLE_USER">
             <h2>Objects & Memos</h2>
             <ul>
             <li><g:link controller="Object">Objects (Object)</g:link></li>
             <li><g:link controller="Memo">Memos (Memo)</g:link></li>
             </ul>
+        </sec:ifAnyGranted>
 
+        <sec:ifAllGranted roles="ROLE_ADMIN">
             <h2>All Controllers:</h2>
             <br>
             <ul>
@@ -138,6 +178,7 @@
                     </li>
                 </g:each>
             </ul>
+        </sec:ifAllGranted>
         </div>
     </section>
 </div>

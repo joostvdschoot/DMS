@@ -10,23 +10,23 @@ class S2ptabsController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond s2ptabsService.list(params), model:[s2ptabsCount: s2ptabsService.count()]
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def show(Long id) {
         respond s2ptabsService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def create() {
         respond new S2ptabs(params)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def save(S2ptabs s2ptabs) {
         if (s2ptabs == null) {
             notFound()
@@ -49,12 +49,12 @@ class S2ptabsController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def edit(Long id) {
         respond s2ptabsService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def update(S2ptabs s2ptabs) {
         if (s2ptabs == null) {
             notFound()
@@ -77,7 +77,7 @@ class S2ptabsController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def delete(Long id) {
         if (id == null) {
             notFound()

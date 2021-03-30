@@ -10,23 +10,23 @@ class SpadwsController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond spadwsService.list(params), model:[spadwsCount: spadwsService.count()]
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def show(Long id) {
         respond spadwsService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def create() {
         respond new Spadws(params)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def save(Spadws spadws) {
         if (spadws == null) {
             notFound()
@@ -49,12 +49,12 @@ class SpadwsController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def edit(Long id) {
         respond spadwsService.get(id)
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def update(Spadws spadws) {
         if (spadws == null) {
             notFound()
@@ -77,7 +77,7 @@ class SpadwsController {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN', 'ROLE_CONFIG'])
     def delete(Long id) {
         if (id == null) {
             notFound()

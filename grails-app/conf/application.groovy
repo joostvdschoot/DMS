@@ -4,6 +4,7 @@
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'dms.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'dms.UserRole'
 grails.plugin.springsecurity.authority.className = 'dms.Role'
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
@@ -31,7 +32,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/css/**',      filters: 'none'],
 	[pattern: '/**/images/**',   filters: 'none'],
 	[pattern: '/**/favicon.ico', filters: 'none'],
-	[pattern: '/**',             filters: 'JOINED_FILTERS'],
+	[pattern: '/**',             filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
 	//Stateless chain
     [ pattern: '/api/**', filters: 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter,-rememberMeAuthenticationFilter'],
 
@@ -40,9 +41,12 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
 ]
 
-//grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/index'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/'
 grails.plugin.springsecurity.useBasicAuth = true
+grails.plugin.springsecurity.rememberMe.persistent = false
 grails.plugin.springsecurity.rest.token.storage.useGorm = true
-grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'dms.AuthenticationToken'
-
+//grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'dms.AuthenticationToken'
+//grails.plugin.springsecurity.logout.handlerNames = ['rememberMeServices','securityContextLogoutHandler']
+grails.plugin.springsecurity.logout.handlerNames = ['rememberMeServices','securityContextLogoutHandler']
+//grails.plugin.springsecurity.auth.loginFormUrl = '/'
 
